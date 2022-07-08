@@ -1,7 +1,10 @@
 import requests
+import json
+import config
 def main():
-    x = requests.get('https://w3schools.com/python/demopage.htm')
-    print(x.text)
+    response = requests.get('')
+    data = json.loads(response.content)  
+    print(data)
 
 
 if __name__ == "__main__":
