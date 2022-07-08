@@ -1,3 +1,10 @@
-veid = "<your veid>"
-api_key = "<your api key>"
-email_address = "<your email address to receive result>"
+---
+ bwg:
+   scheme: https
+   domain: api.64clouds.com
+   path: /v1/getServiceInfo
+   parameters: ['veid','api_key']
+ user:
+   veid: '<your veid>'
+   api_key: <your api key>
+   email_address: <your email address for getting result>
