@@ -4,7 +4,8 @@
    domain: api.64clouds.com
    path: /v1/getServiceInfo
    parameters: ['veid','api_key']
+   lookup_params: ['hostname','plan_monthly_data','monthly_data_multiplier','data_counter','data_next_reset']
  user:
-   veid: '<your veid>'
+   veid: <your veid>
    api_key: <your api key>
    email_address: <your email address for getting result>

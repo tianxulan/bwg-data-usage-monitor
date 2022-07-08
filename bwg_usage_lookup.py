@@ -3,18 +3,20 @@ import requests
 import json
 import yaml
 from urllib.parse import urlunsplit, urlencode
-def main():
+def bwg_lookup():
     # Read user config
     with open("local_config.yaml", "r") as stream:
         try:
             config = yaml.safe_load(stream)
         except yaml.YAMLError as exc:
             print(exc)
+    
+    # Call bandwagon api
     url = build_url(config)
-    #Call bandwagon api
-    # response = requests.get('')
-    # data = json.loads(response.content)  
-    # print(data)
+    response = requests.get(url)
+    data = json.loads(response.content)  
+    result = {key:value for key,value in data.items() if key in config['bwg']['lookup_params']}
+    return result
 
 # Compose url form user configuration data
 # INPUT: <Dict> User configuration read from config.yaml
@@ -24,7 +26,3 @@ def build_url(config):
     query = urlencode({key:value for key, value in config['user'].items() if key in config['bwg']["parameters"]}) 
     url = urlunsplit((config['bwg']['scheme'], config['bwg']['domain'],config['bwg']['path'],query,""))
     return url
-
-
-if __name__ == "__main__":
-    main()
