@@ -3,6 +3,7 @@ import yaml
 GB_TO_BYTE_FACTOR = 1073741824
 from datetime import datetime,timedelta
 import pytz
+from string import Template
 def main():
     # Read user config
     with open("config.yaml", "r") as stream:
@@ -13,10 +14,8 @@ def main():
     # bwg lookup and compose email
     # lookup_result = bul.bwg_lookup(config)
     lookup_result = {'hostname': 'Abandonments', 'plan_monthly_data': 1073741824000, 'monthly_data_multiplier': 1, 'data_counter': 946972627, 'data_next_reset': 1659829465}
-    processed_result = data_process(lookup_result)
-    subject = compose_subject(processed_result)
+    processed_result = data_process(lookup_result)   
     body = compose_body(processed_result)
-    print(subject)
     print(body)
 
 # Process lookup result
@@ -59,17 +58,12 @@ def data_process(lookup_result):
     result["data_remain_GB"] = "{:.2f}".format(data_total_GB - data_used_GB)
     result["data_used_percent"] = "{:.2f}".format(data_used_percent) + "%"
     return result 
-# Compose the subject of email
-# INPUT-[data]:<Dict> Processed result
-# OUTPUT: <String> the subject of email 
-def compose_subject(data):
-    subject_string = f"BWG Data Monitor: {data['data_used_GB']}/{data['data_total_GB']} GB ({data['data_used_percent']}) used" 
-    return subject_string
 
 # Compose the body of email
 # INPUT-[data]:<Dict> Processed result
 # OUTPUT: <String> the body of email 
 def compose_body(data):
+    d = 
     body_string = (f"Abstract: {data['data_used_percent']}/1000 GB(2.5%) used while 3.3% days of this cycle has passed.\n"
                    f"Request Time(CST) :{data['time_now_cst']}\n"
                    f"Hostname: {data['hostname']}\n"
