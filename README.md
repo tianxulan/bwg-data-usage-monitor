@@ -1,7 +1,7 @@
 # BWG Data Monitor 
 A python script to check Bandwagon data usage and generate a text report. 
 ## Requirement
-* Python 3.6+
+* Python 3.9
 ## How to use
 1. Download source code
 2. Install Dependecey
