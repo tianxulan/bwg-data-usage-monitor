@@ -1,5 +1,20 @@
-# bwg-data-usage-monitor
+# BWG Data Monitor 
 A python script to check Bandwagon data usage and generate a text report. Use the report with mail/mailx and crontab to send daily/weekly report to your inbox. 
+## Requirement
+* Python 3.6+
+## How to use
+1. Download source code
+2. Install Dependecey
+
+        pip3 install -r requirements.txt
+3. Replace placeholder with your **veid** and **api_key** in *config.yaml* 
+
+        veid: <your veid>
+        api_key: <your api key>
+4. Run the script
+
+        python3 bwg_data_report.py
+
 
 ## How report looks like
     Subject: New BWG Data Monitoring Report
