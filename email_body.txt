@@ -9,6 +9,6 @@ Current Cycle(CST): $date_start_cst - $date_reset_cst
 Data Reset Time(CST): $time_reset_cst
 Days counter: $days_passed/$days_cycle days
 ---------------Timezone related info starts-----------------
-Request Time(PST) = $time_now_cst
+Request Time(PST) = $time_now_pst
 Current Cycle(PST): $date_start_pst - $date_reset_pst
 Data Reset Time(PST) = $time_reset_pst
