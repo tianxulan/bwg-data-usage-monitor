@@ -70,7 +70,7 @@ def compose_subject(data):
 # INPUT-[data]:<Dict> Processed result
 # OUTPUT: <String> the body of email 
 def compose_body(data):
-    body_string = (f"Report: {data['data_used_percent']} data has been used while this cycle has passed {data['days_passed_percent']}.\n"
+    body_string = (f"Abstract: {data['data_used_percent']}/1000 GB(2.5%) used while 3.3% days of this cycle has passed.\n"
                    f"Request Time(CST) :{data['time_now_cst']}\n"
                    f"Hostname: {data['hostname']}\n"
                    f"Total Data: {data['data_total_GB']} GB\n"
