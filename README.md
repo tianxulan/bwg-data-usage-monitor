@@ -2,7 +2,7 @@
 A python script to check Bandwagon data usage and generate a text report. Use the report with mail/mailx and crontab to send daily/weekly report to your inbox. 
 
 ## How report looks like
-    Subject: New BWG Data Monitor Report
+    Subject: New BWG Data Monitoring Report
     Body:
         Abstract: 25/1000 GB(2.5%) used while 3.3% days of this cycle has passed.
         Request Time(CST): July 10, 2022 03:22:22

@@ -6,17 +6,20 @@ import pytz
 from string import Template
 def main():
     # Read user config
-    with open("config.yaml", "r") as stream:
+    with open("local_config.yaml", "r") as stream:
         try:
             config = yaml.safe_load(stream)
         except yaml.YAMLError as exc:
             print(exc)
-    # bwg lookup and compose email
-    # lookup_result = bul.bwg_lookup(config)
-    lookup_result = {'hostname': 'Abandonments', 'plan_monthly_data': 1073741824000, 'monthly_data_multiplier': 1, 'data_counter': 946972627, 'data_next_reset': 1659829465}
-    processed_result = data_process(lookup_result)   
-    body = compose_body(processed_result)
-    print(body)
+    # bwg lookup 
+    lookup_result = bul.bwg_lookup(config)
+    processed_result = data_process(lookup_result) 
+    # compose email  
+    with open('email_body.txt', 'r') as f:
+        src = Template(f.read())
+        email_body = src.substitute(processed_result)
+        print(email_body)
+    
 
 # Process lookup result
 # INPUT-[lookup_result]:<Dict> Processed response from bwg api
@@ -58,30 +61,6 @@ def data_process(lookup_result):
     result["data_remain_GB"] = "{:.2f}".format(data_total_GB - data_used_GB)
     result["data_used_percent"] = "{:.2f}".format(data_used_percent) + "%"
     return result 
-
-# Compose the body of email
-# INPUT-[data]:<Dict> Processed result
-# OUTPUT: <String> the body of email 
-def compose_body(data):
-    d = 
-    body_string = (f"Abstract: {data['data_used_percent']}/1000 GB(2.5%) used while 3.3% days of this cycle has passed.\n"
-                   f"Request Time(CST) :{data['time_now_cst']}\n"
-                   f"Hostname: {data['hostname']}\n"
-                   f"Total Data: {data['data_total_GB']} GB\n"
-                   f"Used Data: {data['data_used_GB']} GB\n"
-                   f"Percent Used: {data['data_used_percent']}\n"
-                   f"Data Remaining: {data['data_remain_GB']} GB\n"
-                   f"Current Cycle(CST): {data['date_start_cst']} - {data['date_reset_cst']}\n"
-                   f"Data Reset Time(CST): {data['time_reset_cst']}\n"
-                   f"Days Counter: {data['days_passed']}/{data['days_cycle']} days\n"
-                   "---------------Timezone related info starts-----------------\n"
-                   f"Request Time(PST) :{data['time_now_pst']}\n"
-                   f"Current Cycle(PST): {data['date_start_pst']} - {data['date_reset_pst']}\n"
-                   f"Data Reset Time(PST): {data['time_reset_pst']}"
-
-                  )
-    return body_string
-
 
 if __name__ == "__main__":
     main()
