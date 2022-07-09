@@ -1,14 +1,11 @@
 Abstract: $data_used_GB/$data_total_GB GB($data_used_percent) used while $days_passed_percent days of this cycle has passed.
-Request Time(CST): $time_now_cst
+Request Time: $time_now_cst
 Hostname: $hostname
 Total Data: $data_total_GB GB
 Used Data: $data_used_GB GB
 Percent Used: $data_used_percent
 Data Remaining: $data_remain_GB GB
-Current Cycle(CST): $date_start_cst - $date_reset_cst
-Data Reset Time(CST): $time_reset_cst
+Current Cycle: $date_start_cst - $date_reset_cst
+Data Reset Time: $time_reset_cst
 Days counter: $days_passed/$days_cycle days
----------------Timezone related info starts-----------------
-Request Time(PST) = $time_now_pst
-Current Cycle(PST): $date_start_pst - $date_reset_pst
-Data Reset Time(PST) = $time_reset_pst
+*Note: All times use the timezone on your server
